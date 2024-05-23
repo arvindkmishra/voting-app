@@ -1,24 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VotingApp.Domain.Entities;
-using VotingApp.Domain.Interfaces;
+using VotingApp.Infrastructure.Interfaces;
+using VotingApp.Infrastructure.Models;
 
-namespace VotingApp.Infrastructure.Services
+namespace VotingApp.Infrastructure.Repositories
 {
-    internal class CandidateService : ICandidateService
+    public class CandidateRepository(VotingContext context) : ICandidateRepository
     {
-        private readonly VotingContext _context;
+        private readonly VotingContext _context = context ?? throw new ArgumentNullException(nameof(context));
 
-        public CandidateService(VotingContext context)
+        public async Task<IEnumerable<Candidate>> Get(int? candidateId)
         {
-            _context = context;
+            return candidateId.HasValue ?
+                       _context.Candidates.Where(candidate => candidate.Id == candidateId).AsEnumerable() :
+                       await _context.Candidates.ToListAsync();
         }
 
-        public async Task<IEnumerable<Candidate>> GetCandidates()
-        {
-            return await _context.Candidates.ToListAsync();
-        }
-
-        public async Task<Candidate> AddCandidate(string name)
+        public async Task<Candidate> Add(string name)
         {
             var candidate = new Candidate { Name = name, Votes = 0 };
             _context.Candidates.Add(candidate);

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VotingApp.Domain.Entities;
+using VotingApp.Infrastructure.Models;
 
 namespace VotingApp.Infrastructure
 {
