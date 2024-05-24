@@ -1,0 +1,13 @@
+<div>
+  <h4>VoterS</h4>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <label class="margin-right-10" for="firstName">First Name:</label>
+    <input type="text" id="firstName" formControlName="firstName">
+ 
+    <label class="margin-right-10" for="lastName">Last Name:</label>
+    <input type="text" id="lastName" formControlName="lastName">
+    <button class="margin-right-10" type="submit" [disabled]="registrationForm.invalid">Register</button>
+    <button (click)="navigateToHome()">Back</button>
+  </form>
+</div>
+ 

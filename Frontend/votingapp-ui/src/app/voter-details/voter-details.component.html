@@ -1,0 +1,55 @@
+<h1> Voting App</h1>
+<div class="voters">
+  <table>
+    <tr>
+      <td colspan="2" class="text-align-center text-bold"><span class="title">Voters</span>
+        <button (click)="navigateToVoter()" class="action-button">+</button>
+      </td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th>Has Voted</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let voter of voters">
+        <td class="text-align-center">{{ voter.fullName }}</td>
+        <td class="text-align-center">{{ voter.hasVotes ? 'Yes' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="candidate">
+  <table>
+    <tr>
+      <td colspan="2" class="text-align-center text-bold"><span class="title">Candidates</span>
+        <button (click)="navigateToCandidates()" class="action-button">+</button>
+      </td>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th>Votes</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let candidate of candidates">
+        <td class="text-align-center">{{ candidate.fullName}}</td>
+        <td class="text-align-center">{{ candidate?.totalVotes}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<h2>Cast your valuable vote:</h2>
+<form [formGroup]="votingForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="voterId" class="margin-right-10">I</label>
+    <select id="voterId" formControlName="voterId" class="margin-right-10">
+      <option *ngFor="let voter of voters" [value]="voter.id">{{ voter.fullName}}</option>
+    </select>
+    <label for="candidateId" class="margin-right-10">vote for</label>
+    <select id="candidateId" formControlName="candidateId" class="margin-right-10">
+      <option *ngFor="let candidate of candidates" [value]="candidate.id">{{ candidate.fullName }}</option>
+    </select>
+    <button type="submit" [disabled]="votingForm.invalid" class="margin-left-10">Vote</button>
+  </div>
+</form>

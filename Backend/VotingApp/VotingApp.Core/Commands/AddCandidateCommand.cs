@@ -23,9 +23,8 @@ namespace VotingApp.Core.Commands
                     return new CandidateDto()
                     {
                         Id = response.Id,
-                        FirstName = request.FirstName,
-                        LastName = request.LastName,
-                        TotalVotes = 0
+                        FullName = $"{request.FirstName} {request.LastName}",
+                        TotalVotes = response.Votes
                     };
                 }
                 else

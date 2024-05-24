@@ -23,8 +23,8 @@ namespace VotingApp.Core.Commands
                     return new VoterDto()
                     {
                         Id = response.Id,
-                        FirstName = request.FirstName,
-                        LastName = request.LastName,
+                        FullName = $"{request.FirstName} {request.LastName}",
+                        HasVotes = false
                     };
                 }
                 else

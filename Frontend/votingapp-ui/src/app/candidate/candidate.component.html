@@ -1,0 +1,15 @@
+<div>
+  <h4>CandidateS</h4>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="margin-bottom-10">
+      <label class="margin-right-10" for="firstName">First Name:</label>
+      <input type="text" id="firstName" formControlName="firstName">
+
+      <label class="margin-right-10" for="lastName">Last Name:</label>
+      <input type="text" id="lastName" formControlName="lastName">
+    </div>
+    <button type="submit" class="margin-right-10" [disabled]="registrationForm.invalid">Register</button>
+    <button (click)="navigateToHome()">Back</button>
+  </form>
+</div>
